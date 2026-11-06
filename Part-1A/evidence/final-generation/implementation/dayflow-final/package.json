@@ -1,0 +1,23 @@
+{
+  "name": "dayflow-task-management-api",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node --test test",
+    "lint": "eslint .",
+    "syntax": "node --check src/server.js",
+    "security": "node --test test/security/input-and-file-access.test.js",
+    "validate": "node scripts/validate.js"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "eslint": "^9.0.0"
+  }
+}

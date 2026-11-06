@@ -1,0 +1,170 @@
+{
+  "startedAt": "2026-11-05T12:59:22.548Z",
+  "generation": "initial-generation",
+  "toolVersions": {
+    "node": {
+      "output": "v26.13.0",
+      "exitCode": 0,
+      "error": null
+    },
+    "npm": {
+      "output": "11.20.0",
+      "exitCode": 0,
+      "error": null
+    },
+    "eslintDeclared": "^9.0.0"
+  },
+  "results": [
+    {
+      "gate": "lint",
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "expectedExitCode": 0,
+      "observedExitCode": 0,
+      "signal": null,
+      "passed": true,
+      "spawnError": null,
+      "failureDetails": [],
+      "stdout": "\n> dayflow-task-management-api@1.0.0 lint\n> eslint .\n\n",
+      "stderr": ""
+    },
+    {
+      "gate": "syntax",
+      "command": [
+        [
+          "/home/antra/.nvm/versions/node/v26.13.0/bin/node",
+          "--check",
+          "eslint.config.js"
+        ],
+        [
+          "/home/antra/.nvm/versions/node/v26.13.0/bin/node",
+          "--check",
+          "scripts/validate.js"
+        ],
+        [
+          "/home/antra/.nvm/versions/node/v26.13.0/bin/node",
+          "--check",
+          "src/app.js"
+        ],
+        [
+          "/home/antra/.nvm/versions/node/v26.13.0/bin/node",
+          "--check",
+          "src/config.js"
+        ],
+        [
+          "/home/antra/.nvm/versions/node/v26.13.0/bin/node",
+          "--check",
+          "src/errors/api-error.js"
+        ],
+        [
+          "/home/antra/.nvm/versions/node/v26.13.0/bin/node",
+          "--check",
+          "src/persistence/json-task-store.js"
+        ],
+        [
+          "/home/antra/.nvm/versions/node/v26.13.0/bin/node",
+          "--check",
+          "src/routes/tasks.js"
+        ],
+        [
+          "/home/antra/.nvm/versions/node/v26.13.0/bin/node",
+          "--check",
+          "src/server.js"
+        ],
+        [
+          "/home/antra/.nvm/versions/node/v26.13.0/bin/node",
+          "--check",
+          "src/services/task-service.js"
+        ],
+        [
+          "/home/antra/.nvm/versions/node/v26.13.0/bin/node",
+          "--check",
+          "src/validation/task-validation.js"
+        ],
+        [
+          "/home/antra/.nvm/versions/node/v26.13.0/bin/node",
+          "--check",
+          "test/api/tasks-api.test.js"
+        ],
+        [
+          "/home/antra/.nvm/versions/node/v26.13.0/bin/node",
+          "--check",
+          "test/helpers/deterministic-sources.js"
+        ],
+        [
+          "/home/antra/.nvm/versions/node/v26.13.0/bin/node",
+          "--check",
+          "test/helpers/temporary-store.js"
+        ],
+        [
+          "/home/antra/.nvm/versions/node/v26.13.0/bin/node",
+          "--check",
+          "test/unit/json-task-store.test.js"
+        ],
+        [
+          "/home/antra/.nvm/versions/node/v26.13.0/bin/node",
+          "--check",
+          "test/unit/task-lifecycle.test.js"
+        ],
+        [
+          "/home/antra/.nvm/versions/node/v26.13.0/bin/node",
+          "--check",
+          "test/unit/task-service.test.js"
+        ],
+        [
+          "/home/antra/.nvm/versions/node/v26.13.0/bin/node",
+          "--check",
+          "test/unit/task-validation.test.js"
+        ]
+      ],
+      "expectedExitCode": 0,
+      "observedExitCode": 0,
+      "signal": null,
+      "passed": true,
+      "spawnError": null,
+      "failureDetails": [],
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "gate": "security",
+      "command": [
+        "npm",
+        "run",
+        "security"
+      ],
+      "expectedExitCode": 0,
+      "observedExitCode": 1,
+      "signal": null,
+      "passed": false,
+      "spawnError": null,
+      "failureDetails": [
+        "Could not find 'test/security/input-and-file-access.test.js'"
+      ],
+      "stdout": "\n> dayflow-task-management-api@1.0.0 security\n> node --test test/security/input-and-file-access.test.js\n\n",
+      "stderr": "Could not find 'test/security/input-and-file-access.test.js'\n"
+    },
+    {
+      "gate": "tests",
+      "command": [
+        "npm",
+        "run",
+        "test"
+      ],
+      "expectedExitCode": 0,
+      "observedExitCode": 0,
+      "expectedMinimumTestCount": 1,
+      "observedTestCount": 42,
+      "signal": null,
+      "passed": true,
+      "spawnError": null,
+      "failureDetails": [],
+      "stdout": "\n> dayflow-task-management-api@1.0.0 test\n> node --test\n\n✔ POST /tasks creates a task with contract defaults and UTC timestamps (96.82786ms)\n✔ POST /tasks preserves custom task values and normalized tags (17.310659ms)\n✔ POST /tasks rejects missing, empty, and whitespace titles without changing state (23.931881ms)\n✔ GET /tasks returns tasks and applies exact case-insensitive tag filtering (69.530994ms)\n✔ GET /tasks?sort=priority orders by priority, creation time, then ID (28.286325ms)\n✔ GET /tasks/{id} returns only the requested task and unknown IDs use the error contract (8.711467ms)\n✔ successful task responses satisfy the timestamp constraints declared by OpenAPI (4.909015ms)\n✔ PATCH /tasks/{id} updates permitted fields and rejects invalid updates atomically (41.832556ms)\n✔ DELETE /tasks/{id} deletes existing tasks and returns not found for missing IDs (13.680936ms)\n✔ PATCH /tasks/{id}/status accepts each permitted transition and advances UTC timestamps (25.418992ms)\n✔ rejected status transitions return 409 and preserve the task and updatedAt (101.589375ms)\n✔ test/helpers/deterministic-sources.js (110.305342ms)\n✔ test/helpers/temporary-store.js (107.265497ms)\n✔ missing JSON file initializes to an empty task collection (37.061196ms)\n✔ store reads a valid persisted task collection (6.463546ms)\n✔ store fails closed on malformed JSON without changing the original bytes (8.787133ms)\n✔ store rejects offset timestamps without changing the original file (3.933192ms)\n✔ store serializes concurrent mutations without losing updates (14.332324ms)\n✔ failed atomic replacement preserves the last valid file (8.318084ms)\n✔ update changes only permitted fields and advances updatedAt in UTC (5.20629ms)\n✔ invalid or unsupported updates leave the task and timestamp unchanged (2.572273ms)\n✔ delete removes an existing task and reports its ID (3.170886ms)\n✔ status service allows exactly the three specified transitions (1.420689ms)\n✔ every rejected status transition returns 409 and preserves task fields and timestamp (2.016776ms)\n✔ status update rejects invalid request values without changing the task (0.729295ms)\n✔ create applies defaults, generated IDs, and injected UTC timestamps (3.696054ms)\n✔ create preserves custom priority, description, and tags (0.618782ms)\n✔ invalid creation does not mutate the task collection (1.064213ms)\n✔ list returns tasks and filters tags by exact case-insensitive match (1.126808ms)\n✔ priority sort uses priority, oldest creation time, then ascending ID (2.481994ms)\n✔ priority sort compares task IDs by Unicode code point (0.389194ms)\n✔ get returns the requested task or rejects with a not-found API error (0.472034ms)\n✔ create validation trims title and applies optional-field defaults (8.266968ms)\n✔ create validation preserves optional values and first tag spelling (0.591153ms)\n✔ create validation rejects missing, non-string, empty, and whitespace titles (1.083279ms)\n✔ create validation rejects unsupported fields and invalid values (0.804714ms)\n✔ update validation accepts valid partial fields and empty description (0.501324ms)\n✔ update validation rejects empty objects, unsupported fields, and invalid values (0.68659ms)\n✔ status update validation accepts only exact API values (0.696282ms)\n✔ persisted task validation accepts canonical UTC task data (0.976043ms)\n✔ persisted task validation rejects malformed fields and offset timestamps (1.31638ms)\n✔ task collection validation requires records with unique IDs (1.272788ms)\nℹ tests 42\nℹ suites 0\nℹ pass 42\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 819.182119\n",
+      "stderr": ""
+    }
+  ],
+  "overallPassed": false
+}

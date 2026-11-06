@@ -1,0 +1,145 @@
+{
+  "startedAt": "2026-11-05T12:36:37.234Z",
+  "generation": "initial-generation",
+  "toolVersions": {
+    "node": {
+      "output": "v26.13.0",
+      "exitCode": 0,
+      "error": null
+    },
+    "npm": {
+      "output": "11.20.0",
+      "exitCode": 0,
+      "error": null
+    },
+    "eslintDeclared": "^9.0.0"
+  },
+  "results": [
+    {
+      "gate": "lint",
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "expectedExitCode": 0,
+      "observedExitCode": 0,
+      "signal": null,
+      "passed": true,
+      "spawnError": null,
+      "failureDetails": [],
+      "stdout": "\n> dayflow-task-management-api@1.0.0 lint\n> eslint .\n\n",
+      "stderr": ""
+    },
+    {
+      "gate": "syntax",
+      "command": [
+        [
+          "/home/antra/.nvm/versions/node/v26.13.0/bin/node",
+          "--check",
+          "eslint.config.js"
+        ],
+        [
+          "/home/antra/.nvm/versions/node/v26.13.0/bin/node",
+          "--check",
+          "scripts/validate.js"
+        ],
+        [
+          "/home/antra/.nvm/versions/node/v26.13.0/bin/node",
+          "--check",
+          "src/app.js"
+        ],
+        [
+          "/home/antra/.nvm/versions/node/v26.13.0/bin/node",
+          "--check",
+          "src/config.js"
+        ],
+        [
+          "/home/antra/.nvm/versions/node/v26.13.0/bin/node",
+          "--check",
+          "src/errors/api-error.js"
+        ],
+        [
+          "/home/antra/.nvm/versions/node/v26.13.0/bin/node",
+          "--check",
+          "src/persistence/json-task-store.js"
+        ],
+        [
+          "/home/antra/.nvm/versions/node/v26.13.0/bin/node",
+          "--check",
+          "src/server.js"
+        ],
+        [
+          "/home/antra/.nvm/versions/node/v26.13.0/bin/node",
+          "--check",
+          "src/validation/task-validation.js"
+        ],
+        [
+          "/home/antra/.nvm/versions/node/v26.13.0/bin/node",
+          "--check",
+          "test/helpers/deterministic-sources.js"
+        ],
+        [
+          "/home/antra/.nvm/versions/node/v26.13.0/bin/node",
+          "--check",
+          "test/helpers/temporary-store.js"
+        ],
+        [
+          "/home/antra/.nvm/versions/node/v26.13.0/bin/node",
+          "--check",
+          "test/unit/json-task-store.test.js"
+        ],
+        [
+          "/home/antra/.nvm/versions/node/v26.13.0/bin/node",
+          "--check",
+          "test/unit/task-validation.test.js"
+        ]
+      ],
+      "expectedExitCode": 0,
+      "observedExitCode": 0,
+      "signal": null,
+      "passed": true,
+      "spawnError": null,
+      "failureDetails": [],
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "gate": "security",
+      "command": [
+        "npm",
+        "run",
+        "security"
+      ],
+      "expectedExitCode": 0,
+      "observedExitCode": 1,
+      "signal": null,
+      "passed": false,
+      "spawnError": null,
+      "failureDetails": [
+        "Could not find 'test/security/input-and-file-access.test.js'"
+      ],
+      "stdout": "\n> dayflow-task-management-api@1.0.0 security\n> node --test test/security/input-and-file-access.test.js\n\n",
+      "stderr": "Could not find 'test/security/input-and-file-access.test.js'\n"
+    },
+    {
+      "gate": "tests",
+      "command": [
+        "npm",
+        "run",
+        "test"
+      ],
+      "expectedExitCode": 0,
+      "observedExitCode": 0,
+      "expectedMinimumTestCount": 1,
+      "observedTestCount": 16,
+      "signal": null,
+      "passed": true,
+      "spawnError": null,
+      "failureDetails": [],
+      "stdout": "\n> dayflow-task-management-api@1.0.0 test\n> node --test\n\n✔ test/helpers/deterministic-sources.js (43.167476ms)\n✔ test/helpers/temporary-store.js (42.136782ms)\n✔ missing JSON file initializes to an empty task collection (21.273582ms)\n✔ store reads a valid persisted task collection (3.178161ms)\n✔ store serializes concurrent mutations without losing updates (11.253712ms)\n✔ failed atomic replacement preserves the last valid file (6.310969ms)\n✔ create validation trims title and applies optional-field defaults (5.5103ms)\n✔ create validation preserves optional values and first tag spelling (0.311599ms)\n✔ create validation rejects missing, non-string, empty, and whitespace titles (0.358656ms)\n✔ create validation rejects unsupported fields and invalid values (0.258979ms)\n✔ update validation accepts valid partial fields and empty description (0.16811ms)\n✔ update validation rejects empty objects, unsupported fields, and invalid values (0.263534ms)\n✔ status update validation accepts only exact API values (0.232973ms)\n✔ persisted task validation accepts canonical UTC task data (0.446578ms)\n✔ persisted task validation rejects malformed fields and offset timestamps (0.282022ms)\n✔ task collection validation requires records with unique IDs (0.570318ms)\nℹ tests 16\nℹ suites 0\nℹ pass 16\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 166.242776\n",
+      "stderr": ""
+    }
+  ],
+  "overallPassed": false
+}

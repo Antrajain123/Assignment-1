@@ -1,0 +1,238 @@
+{
+  "evaluationMode": "controlled-provider-fixtures",
+  "referenceInstant": "2026-03-10T12:00:00Z",
+  "defaultTimeZone": "America/New_York",
+  "totalCases": 24,
+  "summary": {
+    "schema": {
+      "passed": 24,
+      "total": 24
+    },
+    "deterministic": {
+      "passed": 24,
+      "total": 24
+    },
+    "semantic": {
+      "passed": 13,
+      "total": 13
+    }
+  },
+  "cases": [
+    {
+      "id": "E01",
+      "category": "normal",
+      "actualStatus": 200,
+      "actualCode": null,
+      "schemaCorrect": true,
+      "deterministicCorrect": true,
+      "semanticCorrect": true
+    },
+    {
+      "id": "E02",
+      "category": "normal",
+      "actualStatus": 200,
+      "actualCode": null,
+      "schemaCorrect": true,
+      "deterministicCorrect": true,
+      "semanticCorrect": true
+    },
+    {
+      "id": "E03",
+      "category": "normal",
+      "actualStatus": 200,
+      "actualCode": null,
+      "schemaCorrect": true,
+      "deterministicCorrect": true,
+      "semanticCorrect": true
+    },
+    {
+      "id": "E04",
+      "category": "relative-time",
+      "actualStatus": 200,
+      "actualCode": null,
+      "schemaCorrect": true,
+      "deterministicCorrect": true,
+      "semanticCorrect": true
+    },
+    {
+      "id": "E05",
+      "category": "relative-date",
+      "actualStatus": 200,
+      "actualCode": null,
+      "schemaCorrect": true,
+      "deterministicCorrect": true,
+      "semanticCorrect": true
+    },
+    {
+      "id": "E06",
+      "category": "explicit-timezone",
+      "actualStatus": 200,
+      "actualCode": null,
+      "schemaCorrect": true,
+      "deterministicCorrect": true,
+      "semanticCorrect": true
+    },
+    {
+      "id": "E07",
+      "category": "missing-date",
+      "actualStatus": 422,
+      "actualCode": "needs_clarification",
+      "schemaCorrect": true,
+      "deterministicCorrect": true,
+      "semanticCorrect": true
+    },
+    {
+      "id": "E08",
+      "category": "missing-time",
+      "actualStatus": 422,
+      "actualCode": "needs_clarification",
+      "schemaCorrect": true,
+      "deterministicCorrect": true,
+      "semanticCorrect": true
+    },
+    {
+      "id": "E09",
+      "category": "missing-title",
+      "actualStatus": 422,
+      "actualCode": "needs_clarification",
+      "schemaCorrect": true,
+      "deterministicCorrect": true,
+      "semanticCorrect": true
+    },
+    {
+      "id": "E10",
+      "category": "ambiguous-date",
+      "actualStatus": 422,
+      "actualCode": "needs_clarification",
+      "schemaCorrect": true,
+      "deterministicCorrect": true,
+      "semanticCorrect": true
+    },
+    {
+      "id": "E11",
+      "category": "ambiguous-time",
+      "actualStatus": 422,
+      "actualCode": "needs_clarification",
+      "schemaCorrect": true,
+      "deterministicCorrect": true,
+      "semanticCorrect": true
+    },
+    {
+      "id": "E12",
+      "category": "invalid-request",
+      "actualStatus": 400,
+      "actualCode": "invalid_request",
+      "schemaCorrect": true,
+      "deterministicCorrect": true,
+      "semanticCorrect": null
+    },
+    {
+      "id": "E13",
+      "category": "invalid-date",
+      "actualStatus": 422,
+      "actualCode": "invalid_reminder",
+      "schemaCorrect": true,
+      "deterministicCorrect": true,
+      "semanticCorrect": null
+    },
+    {
+      "id": "E14",
+      "category": "past-boundary",
+      "actualStatus": 422,
+      "actualCode": "invalid_reminder",
+      "schemaCorrect": true,
+      "deterministicCorrect": true,
+      "semanticCorrect": null
+    },
+    {
+      "id": "E15",
+      "category": "exact-now-boundary",
+      "actualStatus": 422,
+      "actualCode": "invalid_reminder",
+      "schemaCorrect": true,
+      "deterministicCorrect": true,
+      "semanticCorrect": null
+    },
+    {
+      "id": "E16",
+      "category": "calendar-boundary",
+      "actualStatus": 200,
+      "actualCode": null,
+      "schemaCorrect": true,
+      "deterministicCorrect": true,
+      "semanticCorrect": true
+    },
+    {
+      "id": "E17",
+      "category": "daylight-saving-boundary",
+      "actualStatus": 422,
+      "actualCode": "invalid_reminder",
+      "schemaCorrect": true,
+      "deterministicCorrect": true,
+      "semanticCorrect": null
+    },
+    {
+      "id": "E18",
+      "category": "multiple-reminders",
+      "actualStatus": 422,
+      "actualCode": "needs_clarification",
+      "schemaCorrect": true,
+      "deterministicCorrect": true,
+      "semanticCorrect": true
+    },
+    {
+      "id": "E19",
+      "category": "malformed-model-output",
+      "actualStatus": 502,
+      "actualCode": "interpretation_failed",
+      "schemaCorrect": true,
+      "deterministicCorrect": true,
+      "semanticCorrect": null
+    },
+    {
+      "id": "E20",
+      "category": "invalid-model-timezone",
+      "actualStatus": 422,
+      "actualCode": "invalid_reminder",
+      "schemaCorrect": true,
+      "deterministicCorrect": true,
+      "semanticCorrect": null
+    },
+    {
+      "id": "E21",
+      "category": "provider-failure",
+      "actualStatus": 502,
+      "actualCode": "interpretation_failed",
+      "schemaCorrect": true,
+      "deterministicCorrect": true,
+      "semanticCorrect": null
+    },
+    {
+      "id": "E22",
+      "category": "missing-api-configuration",
+      "actualStatus": 503,
+      "actualCode": "configuration_error",
+      "schemaCorrect": true,
+      "deterministicCorrect": true,
+      "semanticCorrect": null
+    },
+    {
+      "id": "E23",
+      "category": "missing-timezone-configuration",
+      "actualStatus": 503,
+      "actualCode": "configuration_error",
+      "schemaCorrect": true,
+      "deterministicCorrect": true,
+      "semanticCorrect": null
+    },
+    {
+      "id": "E24",
+      "category": "invalid-model-time",
+      "actualStatus": 502,
+      "actualCode": "interpretation_failed",
+      "schemaCorrect": true,
+      "deterministicCorrect": true,
+      "semanticCorrect": null
+    }
+  ]
+}

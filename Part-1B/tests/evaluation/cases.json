@@ -1,0 +1,170 @@
+[
+  {
+    "id": "E01",
+    "category": "normal",
+    "request": "Remind me to submit my assignment tomorrow at 10 AM.",
+    "interpretation": { "status": "ready", "title": "Submit my assignment", "date": "2026-03-11", "time": "10:00", "timezone": null, "description": null, "questions": [] },
+    "expected": { "status": 200, "reminder": { "title": "Submit my assignment", "date": "2026-03-11", "time": "10:00", "timezone": "America/New_York" } }
+  },
+  {
+    "id": "E02",
+    "category": "normal",
+    "request": "Call the dentist on 2026-03-12 at 2:30 PM.",
+    "interpretation": { "status": "ready", "title": "Call the dentist", "date": "2026-03-12", "time": "14:30", "timezone": null, "description": null, "questions": [] },
+    "expected": { "status": 200, "reminder": { "title": "Call the dentist", "date": "2026-03-12", "time": "14:30", "timezone": "America/New_York" } }
+  },
+  {
+    "id": "E03",
+    "category": "normal",
+    "request": "Remind me to take my medication tomorrow at 8 AM; the dose is in the kitchen.",
+    "interpretation": { "status": "ready", "title": "Take my medication", "date": "2026-03-11", "time": "08:00", "timezone": null, "description": "The dose is in the kitchen.", "questions": [] },
+    "expected": { "status": 200, "reminder": { "title": "Take my medication", "date": "2026-03-11", "time": "08:00", "timezone": "America/New_York", "description": "The dose is in the kitchen." } }
+  },
+  {
+    "id": "E04",
+    "category": "relative-time",
+    "request": "Remind me to stretch in two hours.",
+    "interpretation": { "status": "ready", "title": "Stretch", "date": "2026-03-10", "time": "10:00", "timezone": null, "description": null, "questions": [] },
+    "expected": { "status": 200, "reminder": { "title": "Stretch", "date": "2026-03-10", "time": "10:00", "timezone": "America/New_York" } }
+  },
+  {
+    "id": "E05",
+    "category": "relative-date",
+    "request": "Remind me to email Sam next Friday at 3 PM.",
+    "interpretation": { "status": "ready", "title": "Email Sam", "date": "2026-03-13", "time": "15:00", "timezone": null, "description": null, "questions": [] },
+    "expected": { "status": 200, "reminder": { "title": "Email Sam", "date": "2026-03-13", "time": "15:00", "timezone": "America/New_York" } }
+  },
+  {
+    "id": "E06",
+    "category": "explicit-timezone",
+    "request": "Remind me to call at 9 AM tomorrow in Europe/London.",
+    "interpretation": { "status": "ready", "title": "Call", "date": "2026-03-11", "time": "09:00", "timezone": "Europe/London", "description": null, "questions": [] },
+    "expected": { "status": 200, "reminder": { "title": "Call", "date": "2026-03-11", "time": "09:00", "timezone": "Europe/London" } }
+  },
+  {
+    "id": "E07",
+    "category": "missing-date",
+    "request": "Remind me to submit my assignment at 10 AM.",
+    "interpretation": { "status": "clarification", "title": null, "date": null, "time": null, "timezone": null, "description": null, "questions": ["What date should I use?"] },
+    "expected": { "status": 422, "code": "needs_clarification" }
+  },
+  {
+    "id": "E08",
+    "category": "missing-time",
+    "request": "Remind me to submit my assignment tomorrow.",
+    "interpretation": { "status": "clarification", "title": null, "date": null, "time": null, "timezone": null, "description": null, "questions": ["What time should I use?"] },
+    "expected": { "status": 422, "code": "needs_clarification" }
+  },
+  {
+    "id": "E09",
+    "category": "missing-title",
+    "request": "Remind me tomorrow at 10 AM.",
+    "interpretation": { "status": "clarification", "title": null, "date": null, "time": null, "timezone": null, "description": null, "questions": ["What should I remind you about?"] },
+    "expected": { "status": 422, "code": "needs_clarification" }
+  },
+  {
+    "id": "E10",
+    "category": "ambiguous-date",
+    "request": "Remind me to pay rent on 03/04 at 9 AM.",
+    "interpretation": null,
+    "expected": { "status": 422, "code": "needs_clarification" }
+  },
+  {
+    "id": "E11",
+    "category": "ambiguous-time",
+    "request": "Remind me to call Alex tomorrow at 8.",
+    "interpretation": null,
+    "expected": { "status": 422, "code": "needs_clarification" }
+  },
+  {
+    "id": "E12",
+    "category": "invalid-request",
+    "request": "   ",
+    "interpretation": null,
+    "expected": { "status": 400, "code": "invalid_request" }
+  },
+  {
+    "id": "E13",
+    "category": "invalid-date",
+    "request": "Remind me to file the report on February 30, 2026 at 9 AM.",
+    "interpretation": { "status": "ready", "title": "File the report", "date": "2026-02-30", "time": "09:00", "timezone": null, "description": null, "questions": [] },
+    "expected": { "status": 422, "code": "invalid_reminder" }
+  },
+  {
+    "id": "E14",
+    "category": "past-boundary",
+    "request": "Remind me to walk today at 7 AM.",
+    "interpretation": { "status": "ready", "title": "Walk", "date": "2026-03-10", "time": "07:00", "timezone": null, "description": null, "questions": [] },
+    "expected": { "status": 422, "code": "invalid_reminder" }
+  },
+  {
+    "id": "E15",
+    "category": "exact-now-boundary",
+    "request": "Remind me to check in today at 8 AM.",
+    "interpretation": { "status": "ready", "title": "Check in", "date": "2026-03-10", "time": "08:00", "timezone": null, "description": null, "questions": [] },
+    "expected": { "status": 422, "code": "invalid_reminder" }
+  },
+  {
+    "id": "E16",
+    "category": "calendar-boundary",
+    "request": "Remind me to celebrate at 9 AM on December 31, 2026.",
+    "interpretation": { "status": "ready", "title": "Celebrate", "date": "2026-12-31", "time": "09:00", "timezone": null, "description": null, "questions": [] },
+    "expected": { "status": 200, "reminder": { "title": "Celebrate", "date": "2026-12-31", "time": "09:00", "timezone": "America/New_York" } }
+  },
+  {
+    "id": "E17",
+    "category": "daylight-saving-boundary",
+    "request": "Remind me to meet at 2:30 AM on March 8, 2026 in America/New_York.",
+    "interpretation": { "status": "ready", "title": "Meet", "date": "2026-03-08", "time": "02:30", "timezone": "America/New_York", "description": null, "questions": [] },
+    "expected": { "status": 422, "code": "invalid_reminder" }
+  },
+  {
+    "id": "E18",
+    "category": "multiple-reminders",
+    "request": "Remind me to call Sam tomorrow at 9 AM and pay rent Friday at 5 PM.",
+    "interpretation": null,
+    "expected": { "status": 422, "code": "needs_clarification" }
+  },
+  {
+    "id": "E19",
+    "category": "malformed-model-output",
+    "request": "Call Alex tomorrow at 10 AM.",
+    "interpretation": { "status": "ready", "title": "incomplete" },
+    "expected": { "status": 502, "code": "interpretation_failed" }
+  },
+  {
+    "id": "E20",
+    "category": "invalid-model-timezone",
+    "request": "Call Alex tomorrow at 10 AM.",
+    "interpretation": { "status": "ready", "title": "Call Alex", "date": "2026-03-11", "time": "10:00", "timezone": "Mars/Olympus", "description": null, "questions": [] },
+    "expected": { "status": 422, "code": "invalid_reminder" }
+  },
+  {
+    "id": "E21",
+    "category": "provider-failure",
+    "request": "Call Alex tomorrow at 10 AM.",
+    "providerFailure": true,
+    "expected": { "status": 502, "code": "interpretation_failed" }
+  },
+  {
+    "id": "E22",
+    "category": "missing-api-configuration",
+    "request": "Call Alex tomorrow at 10 AM.",
+    "configOverride": { "GEMINI_API_KEY": "" },
+    "expected": { "status": 503, "code": "configuration_error" }
+  },
+  {
+    "id": "E23",
+    "category": "missing-timezone-configuration",
+    "request": "Call Alex tomorrow at 10 AM.",
+    "configOverride": { "DEFAULT_TIME_ZONE": "" },
+    "expected": { "status": 503, "code": "configuration_error" }
+  },
+  {
+    "id": "E24",
+    "category": "invalid-model-time",
+    "request": "Call Alex tomorrow at 10 AM.",
+    "interpretation": { "status": "ready", "title": "Call Alex", "date": "2026-03-11", "time": "25:75", "timezone": null, "description": null, "questions": [] },
+    "expected": { "status": 502, "code": "interpretation_failed" }
+  }
+]

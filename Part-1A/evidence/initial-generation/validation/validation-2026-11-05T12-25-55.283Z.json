@@ -1,0 +1,97 @@
+{
+  "startedAt": "2026-11-05T12:25:54.019Z",
+  "generation": "initial-generation",
+  "toolVersions": {
+    "node": {
+      "output": "v26.13.0",
+      "exitCode": 0,
+      "error": null
+    },
+    "npm": {
+      "output": "11.20.0",
+      "exitCode": 0,
+      "error": null
+    },
+    "eslintDeclared": "^9.0.0"
+  },
+  "results": [
+    {
+      "gate": "lint",
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "expectedExitCode": 0,
+      "observedExitCode": 0,
+      "signal": null,
+      "passed": true,
+      "spawnError": null,
+      "failureDetails": [],
+      "stdout": "\n> dayflow-task-management-api@1.0.0 lint\n> eslint .\n\n",
+      "stderr": ""
+    },
+    {
+      "gate": "syntax",
+      "command": [
+        [
+          "/home/antra/.nvm/versions/node/v26.13.0/bin/node",
+          "--check",
+          "eslint.config.js"
+        ],
+        [
+          "/home/antra/.nvm/versions/node/v26.13.0/bin/node",
+          "--check",
+          "scripts/validate.js"
+        ]
+      ],
+      "expectedExitCode": 0,
+      "observedExitCode": 0,
+      "signal": null,
+      "passed": true,
+      "spawnError": null,
+      "failureDetails": [],
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "gate": "security",
+      "command": [
+        "npm",
+        "run",
+        "security"
+      ],
+      "expectedExitCode": 0,
+      "observedExitCode": 1,
+      "signal": null,
+      "passed": false,
+      "spawnError": null,
+      "failureDetails": [
+        "Could not find 'test/security/input-and-file-access.test.js'"
+      ],
+      "stdout": "\n> dayflow-task-management-api@1.0.0 security\n> node --test test/security/input-and-file-access.test.js\n\n",
+      "stderr": "Could not find 'test/security/input-and-file-access.test.js'\n"
+    },
+    {
+      "gate": "tests",
+      "command": [
+        "npm",
+        "run",
+        "test"
+      ],
+      "expectedExitCode": 0,
+      "observedExitCode": 0,
+      "expectedMinimumTestCount": 1,
+      "observedTestCount": 0,
+      "signal": null,
+      "passed": false,
+      "spawnError": null,
+      "failureDetails": [
+        "Expected at least 1 discovered test; observed 0."
+      ],
+      "stdout": "\n> dayflow-task-management-api@1.0.0 test\n> node --test\n\nℹ tests 0\nℹ suites 0\nℹ pass 0\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 43.330942\n",
+      "stderr": ""
+    }
+  ],
+  "overallPassed": false
+}

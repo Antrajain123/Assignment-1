@@ -1,0 +1,153 @@
+openapi: 3.1.0
+info:
+  title: Natural Language Reminder API
+  version: 1.0.0
+  description: Interprets one natural-language reminder. It does not persist, schedule, or deliver reminders.
+servers:
+  - url: http://localhost:3000
+paths:
+  /reminders:
+    post:
+      operationId: interpretReminder
+      summary: Interpret a natural-language reminder request
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ReminderRequest"
+            example:
+              request: Remind me to submit my assignment tomorrow at 10 AM.
+      responses:
+        "200":
+          description: A validated reminder was interpreted.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ReminderSuccess"
+              example:
+                reminder:
+                  title: Submit my assignment
+                  date: "2026-03-11"
+                  time: "10:00"
+                  timezone: America/New_York
+        "400":
+          description: Malformed JSON or invalid request body.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+              example:
+                error:
+                  code: invalid_request
+                  message: Provide a non-empty reminder request.
+        "422":
+          description: Reminder details are invalid or clarification is required.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+              examples:
+                clarification:
+                  value:
+                    error:
+                      code: needs_clarification
+                      message: More information is needed to interpret this reminder.
+                      questions:
+                        - What date should the reminder use?
+                invalidReminder:
+                  value:
+                    error:
+                      code: invalid_reminder
+                      message: The reminder time must be in the future.
+        "502":
+          description: The provider failed or returned an unusable interpretation.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "503":
+          description: Required service configuration is unavailable or invalid.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "500":
+          description: An unexpected internal error occurred.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+components:
+  schemas:
+    ReminderRequest:
+      type: object
+      additionalProperties: false
+      required:
+        - request
+      properties:
+        request:
+          type: string
+          minLength: 1
+          description: One natural-language reminder request.
+    Reminder:
+      type: object
+      additionalProperties: false
+      required:
+        - title
+        - date
+        - time
+        - timezone
+      properties:
+        title:
+          type: string
+          minLength: 1
+        date:
+          type: string
+          format: date
+          pattern: "^\\d{4}-\\d{2}-\\d{2}$"
+        time:
+          type: string
+          pattern: "^(?:[01]\\d|2[0-3]):[0-5]\\d$"
+          description: Local 24-hour time.
+        timezone:
+          type: string
+          description: Valid IANA timezone identifier.
+        description:
+          type: string
+    ReminderSuccess:
+      type: object
+      additionalProperties: false
+      required:
+        - reminder
+      properties:
+        reminder:
+          $ref: "#/components/schemas/Reminder"
+    ErrorResponse:
+      type: object
+      additionalProperties: false
+      required:
+        - error
+      properties:
+        error:
+          type: object
+          additionalProperties: false
+          required:
+            - code
+            - message
+          properties:
+            code:
+              type: string
+              enum:
+                - invalid_request
+                - invalid_reminder
+                - needs_clarification
+                - configuration_error
+                - interpretation_failed
+                - internal_error
+            message:
+              type: string
+            questions:
+              type: array
+              items:
+                type: string
